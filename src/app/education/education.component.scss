@@ -1,0 +1,43 @@
+h2 {
+  font-size: 2.4em;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1.2em;
+  font-weight: 400;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+h3 {
+  font-size: 1.6em;
+  font-weight: 400;
+
+  span {
+    font-weight: bold;
+  }
+
+  .right {
+    float: right;
+    color: gray;
+    font-size: .8em;
+  }
+}
+
+.education {
+  padding: 2em 0;
+  margin: 1em 0;
+
+  .inner {
+    margin: 1em 0;
+  }
+
+  .years {
+    color: grey;
+  }
+}
+
