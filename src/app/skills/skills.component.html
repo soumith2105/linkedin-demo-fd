@@ -1,5 +1,5 @@
-<div class='education category'>
-    <h2>Education Background
+<div class='skills category'>
+    <h2>Programming Skills
         <span class="right">
             <button>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -13,18 +13,14 @@
         </span>
 
     </h2>
-    <h4 *ngIf="education.length == 0">No Education details added!</h4>
-    <div class="inner" *ngFor="let education_mem of education; let last = last">
+    <h4 *ngIf="skills.length == 0">No Skills added!</h4>
+    <div class="inner" *ngFor="let skill of skills; let last = last">
         <h3>
-            <span>{{education_mem.course}}</span>
+            <span>{{skill.language}}</span>
             <span class="right">
-          {{education_mem.duration}}</span>
+                {{skill.level}} of 5
+            </span>
         </h3>
-        <h4>{{education_mem.institution}}</h4>
-        <h4 class="years">
-            {{education_mem.startMonth}} - {{education_mem.endMonth}}
-        </h4>
         <hr *ngIf="!last"/>
-
     </div>
 </div>
