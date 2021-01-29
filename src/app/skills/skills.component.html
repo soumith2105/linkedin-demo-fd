@@ -1,26 +1,31 @@
-<div class='skills category'>
-    <h2>Programming Skills
+<div class="skills category">
+    <h2>
+        Programming Skills
         <span class="right">
             <button>
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round"
-                          stroke-linejoin="round" stroke-width="2"
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
-                    </path>
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    ></path>
                 </svg>
             </button>
         </span>
-
     </h2>
     <h4 *ngIf="skills.length == 0">No Skills added!</h4>
     <div class="inner" *ngFor="let skill of skills; let last = last">
         <h3>
-            <span>{{skill.language}}</span>
-            <span class="right">
-                {{skill.level}} of 5
-            </span>
+            <span>{{ skill.language }}</span>
+            <span class="right"> {{ skill.level }} of 5 </span>
         </h3>
-        <hr *ngIf="!last"/>
+        <hr *ngIf="!last" />
     </div>
 </div>

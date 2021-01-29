@@ -1,13 +1,24 @@
 <h2>Welcome to LinkedIn</h2>
 
-<form class='.col-sm-' action=''>
-  <div class='form-group'>
-    <label for='username'>Username</label>
-    <input type='text' name='username' id='username' class='form-control' ngModel #Username='ngModel'
-           (change)='log(Username)' />
-  </div>
-  <div class='form-group'>
-    <label for='password'>Password</label>
-    <input type='password' id='password' class='form-control' />
-  </div>
+<form class=".col-sm-" [formGroup]="loginDetails" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input
+            type="text"
+            name="username"
+            id="username"
+            class="form-control"
+            formControlName="username"
+        />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            class="form-control"
+            formControlName="password"
+        />
+    </div>
+    <button type="submit">Login</button>
 </form>
