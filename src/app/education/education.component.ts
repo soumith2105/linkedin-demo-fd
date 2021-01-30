@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { Education } from "../education";
+import {Component, OnInit} from "@angular/core";
+import {Education} from "../education";
 
 @Component({
     selector: "app-education",
@@ -28,7 +28,9 @@ export class EducationComponent implements OnInit {
         },
     ];
 
-    constructor() {}
+    constructor() {
+    }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 }

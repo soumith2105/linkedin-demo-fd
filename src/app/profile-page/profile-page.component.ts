@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import {Params, Route} from "@angular/router";
 
 @Component({
     selector: "app-profile-page",
@@ -6,7 +7,12 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./profile-page.component.scss"],
 })
 export class ProfilePageComponent implements OnInit {
-    constructor() {}
 
-    ngOnInit(): void {}
+    constructor() {
+    }
+
+    ngOnInit(): void {
+
+    }
+
 }

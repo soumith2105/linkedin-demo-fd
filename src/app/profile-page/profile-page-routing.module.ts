@@ -4,7 +4,7 @@ import { ProfilePageComponent } from "./profile-page.component";
 
 const routes: Routes = [
     {
-        path: "profile",
+        path: "user/:username",
         component: ProfilePageComponent,
     },
 ];
@@ -13,4 +13,6 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class ProfilePageRoutingModule {}
+export class ProfilePageRoutingModule {
+
+}
