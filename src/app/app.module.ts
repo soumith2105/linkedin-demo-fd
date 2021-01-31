@@ -6,7 +6,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginPageModule } from "./login-page/login-page.module";
 import { ProfilePageModule } from "./profile-page/profile-page.module";
-import { ProfileEditPageComponent } from './profile-edit-page/profile-edit-page.component';
 import {ProfileEditPageModule} from "./profile-edit-page/profile-edit-page.module";
 
 @NgModule({
