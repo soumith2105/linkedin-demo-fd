@@ -20,5 +20,5 @@
             formControlName="password"
         />
     </div>
-    <button type="submit">Login</button>
+    <button type="button" class="btn btn-primary" type="submit" [disabled]="!loginDetails.valid">Login</button>
 </form>

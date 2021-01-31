@@ -1,23 +1,21 @@
 <div class="profile">
-    <h2 class="name">P. Soumith Reddy</h2>
-    <h3 class="profession">Software Engineer</h3>
+    <h2 class="name">{{user.name}}</h2>
+    <h3 class="profession">{{user.status}}</h3>
     <p class="description">
-        Showcase your work by featuring your best posts, documents, media, and
-        websites. Add featured
+        {{user.description}}
     </p>
+    <a routerLink="./edit" routerLinkActive="active" class="link">Edit Personal Information</a>
 </div>
 <div class="dashboard">
     <div class="personal-info">
         <h2>Personal Information</h2>
-        <h5 class="email"><span>Email ID: </span>mail.google.com</h5>
+        <h5 class="email"><span>Email ID: </span>{{user.email}}</h5>
         <h5 class="address">
             <span>Address: </span>
-            Showcase your work by featuring your best posts, documents, media,
-            and websites. Add featured.
+            {{user.address}}
         </h5>
     </div>
     <app-education></app-education>
     <app-experience></app-experience>
     <app-skills></app-skills>
-    <div class="skills"></div>
 </div>

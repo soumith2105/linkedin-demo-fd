@@ -3,43 +3,4 @@
   width: 100vw;
 }
 
-.profile {
-  display: block;
-  background-color: lightblue;
-  padding: 20vh 20vw 2em;
-
-  .name {
-    font-weight: bold;
-    font-size: 6em;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .profession {
-    margin-top: .5em;
-    font-size: 1.5em;
-    color: black;
-    font-weight: bold;
-  }
-
-  .description {
-    margin: 1em 0;
-    font-size: 1.2em;
-    width: 30vw;
-    font-style: italic;
-  }
-}
-
-.dashboard {
-  width: 60vw;
-  margin: 2em 20vw;
-
-  .personal-info {
-    padding: 1em 0;
-    margin: .5em 0;
-  }
-
-}
-
-
 

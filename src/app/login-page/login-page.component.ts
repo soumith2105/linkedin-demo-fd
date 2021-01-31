@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
-import {FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {LoginResponse} from "../auth";
 import {AuthService} from "./auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -11,14 +11,15 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class LoginPageComponent implements OnInit {
     loginDetails: FormGroup = new FormGroup({
-        username: new FormControl(""),
-        password: new FormControl(""),
+        username: new FormControl("", Validators.required),
+        password: new FormControl("", Validators.required),
     });
 
-    showInfo(loginDetails: FormGroup): void {
+    getToken(loginDetails: FormGroup): void {
         this.authService.getLoginToken(loginDetails).subscribe(
             (data: LoginResponse) => {
                 localStorage.setItem("token", data.message);
+                localStorage.setItem("user", loginDetails.value.username);
                 console.log(data);
             },
             (err: HttpErrorResponse) => {
@@ -32,7 +33,7 @@ export class LoginPageComponent implements OnInit {
 
     onSubmit(): void {
         console.log(this.loginDetails.value);
-        this.showInfo(this.loginDetails);
+        this.getToken(this.loginDetails);
     }
 
     ngOnInit(): void {

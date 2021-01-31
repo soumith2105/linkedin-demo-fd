@@ -1,15 +1,16 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {User} from "../auth";
 import {Observable, throwError} from "rxjs";
+import {User} from "../auth";
 import {catchError, retry} from "rxjs/operators";
-
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
-    providedIn: "root",
+    providedIn: "root"
 })
-export class ProfileService {
-    baseurl = "http://localhost:5050/user";
+export class ProfileEditPageService {
+
+    baseurl = "http://localhost:5050/update";
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -19,8 +20,8 @@ export class ProfileService {
     };
 
     // Get User information
-    getUserInfo(username: string | null): Observable<any> {
-        return this.http.get<User>(this.baseurl + `/${username}`, this.httpOptions)
+    updateUserInfo(username: string, userForm: FormGroup): Observable<any> {
+        return this.http.put<User>(this.baseurl, userForm.value, this.httpOptions)
             .pipe(
                 retry(1),
                 catchError(error => this.errorHandling(error))

@@ -1,9 +1,7 @@
 import {Injectable} from "@angular/core";
 import {
     HttpClient, HttpEvent,
-    HttpHeaders,
-    HttpParams,
-    HttpResponse,
+    HttpHeaders, HttpParams,
 } from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
@@ -39,12 +37,12 @@ export class AuthService {
         return this.http.post<LoginResponse>(this.urls.login, JSON.stringify(loginDetails.value), this.httpOptions)
             .pipe(
                 retry(1),
-                catchError(this.errorHandl)
+                catchError(error => this.errorHandling(error))
             );
     }
 
     // Error handling
-    errorHandl(error: any): Observable<never> {
+    errorHandling(error: any): Observable<never> {
         let errorMessage = "";
         if (error.error instanceof ErrorEvent) {
             // Get client-side error

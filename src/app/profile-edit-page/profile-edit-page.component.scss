@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  width: 100vw;
+}
+
+label {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+form {
+  .element {
+    margin: 2em 0;
+
+    input {
+      font-size: 1.4em;
+      font-weight: 600;
+      width: 100%;
+      background: transparent;
+      border:none;
+      // border-bottom: 1px solid #cccccc;
+      outline: none;
+
+      &:active {
+        border: none;
+      }
+
+      &::placeholder {
+        color: lightgray;
+      }
+    }
+  }
+}
