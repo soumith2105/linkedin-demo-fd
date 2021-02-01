@@ -2,34 +2,62 @@
     <h2>
         Education Background
         <span class="right">
-            <button>
-                <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                    ></path>
-                </svg>
-            </button>
+            <button (click)="switchCreate()">Add</button>
         </span>
     </h2>
     <h4 *ngIf="education.length == 0">No Education details added!</h4>
     <div class="inner" *ngFor="let education_mem of education; let last = last">
-        <h3>
-            <span>{{ education_mem.course }}</span>
-            <span class="right"> {{ education_mem.duration }}</span>
-        </h3>
-        <h4>{{ education_mem.institution }}</h4>
-        <h4 class="years">
-            {{ education_mem.startMonth }} - {{ education_mem.endMonth }}
-        </h4>
+        <app-education-inner [education]="education_mem" (myEvent)="reload()"></app-education-inner>
         <hr *ngIf="!last" />
+    </div>
+    <div class="inner">
+        <div *ngIf="create">
+            <form class="personal-info .col-sm-" [formGroup]="educationEditForm" (ngSubmit)="submitForm()">
+                <div class="mb-3 row element">
+                    <label for="institute" class="col-sm-4 col-form-label">Institute:</label>
+                    <div class="col-sm-8">
+                        <input id="institute" type="text" placeholder="Enter Institute" formControlName="institute">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="course" class="col-sm-4 col-form-label">Course:</label>
+                    <div class="col-sm-8">
+                        <input id="course" type="text" placeholder="Enter your Course" formControlName="course">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="startMonth" class="col-sm-4 col-form-label">Start Month:</label>
+                    <div class="col-sm-8">
+                        <input id="startMonth" type="email" placeholder="Enter Start Month" formControlName="startMonth">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="endMonth" class="col-sm-4 col-form-label">End Month:</label>
+                    <div class="col-sm-8">
+                        <input id="endMonth" type="text" placeholder="Enter End Month" formControlName="endMonth">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="duration" class="col-sm-4 col-form-label">Duration:</label>
+                    <div class="col-sm-8">
+                        <input id="duration" type="text" placeholder="Enter Duration" formControlName="duration">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="description" class="col-sm-4 col-form-label">Description:</label>
+                    <div class="col-sm-8">
+                        <input id="description" type="text" placeholder="Enter Description" formControlName="description">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="location" class="col-sm-4 col-form-label">Location:</label>
+                    <div class="col-sm-8">
+                        <input id="location" type="text" placeholder="Enter Location" formControlName="location">
+                    </div>
+                </div>
+                <button class="btn btn-success" type="submit" [disabled]="!educationEditForm.valid">Update</button>
+                <button type="button" class="btn btn-secondary right" (click)="switchCreate()">Cancel</button>
+            </form>
+        </div>
     </div>
 </div>

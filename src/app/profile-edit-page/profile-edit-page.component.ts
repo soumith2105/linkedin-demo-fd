@@ -72,6 +72,10 @@ export class ProfileEditPageComponent implements OnInit {
         return this.user.username === localStorage.getItem("user");
     }
 
+    cancel(): void {
+        this.router.navigateByUrl(`user/${this.user.username}`);
+    }
+
     onSubmit(): void {
         if (this.user.username) {
             this.profileEditService.updateUserInfo(this.user.username, this.userForm).subscribe(data => {

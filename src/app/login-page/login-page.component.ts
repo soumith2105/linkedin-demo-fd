@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {LoginResponse} from "../auth";
 import {AuthService} from "./auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
     selector: "app-login-page",
@@ -28,12 +29,16 @@ export class LoginPageComponent implements OnInit {
         );
     }
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, private router: Router) {
     }
 
     onSubmit(): void {
         console.log(this.loginDetails.value);
         this.getToken(this.loginDetails);
+        const user = localStorage.getItem("user");
+        if (user) {
+            this.router.navigateByUrl(`user/${user}`);
+        }
     }
 
     ngOnInit(): void {

@@ -1,0 +1,82 @@
+<script src="education-inner.component.ts"></script>
+<div *ngIf="!edit">
+    <h3>
+        <span>{{ education.course }}</span>
+        <span class="right">
+            <button (click)="switchEdit()">
+                <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    ></path>
+                </svg>
+
+            </button>
+        </span>
+    </h3>
+    <h4>{{ education.institute.name }}</h4>
+    <h4 class="years">
+        {{ education.startMonth }} - {{ education.endMonth }}
+        <span class="right">
+                {{ education.duration }}
+        </span>
+    </h4>
+</div>
+<div *ngIf="edit">
+    <form class="personal-info .col-sm-" [formGroup]="educationEditForm" (ngSubmit)="submitForm()">
+        <div class="mb-3 row element">
+            <label for="institute" class="col-sm-4 col-form-label">Institute:</label>
+            <div class="col-sm-8">
+                <input id="institute" type="text" placeholder="Enter Institute" formControlName="institute">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="course" class="col-sm-4 col-form-label">Course:</label>
+            <div class="col-sm-8">
+                <input id="course" type="text" placeholder="Enter your Course" formControlName="course">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="startMonth" class="col-sm-4 col-form-label">Start Month:</label>
+            <div class="col-sm-8">
+                <input id="startMonth" type="email" placeholder="Enter Start Month" formControlName="startMonth">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="endMonth" class="col-sm-4 col-form-label">End Month:</label>
+            <div class="col-sm-8">
+                <input id="endMonth" type="text" placeholder="Enter End Month" formControlName="endMonth">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="duration" class="col-sm-4 col-form-label">Duration:</label>
+            <div class="col-sm-8">
+                <input id="duration" type="text" placeholder="Enter Duration" formControlName="duration">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="description" class="col-sm-4 col-form-label">Description:</label>
+            <div class="col-sm-8">
+                <input id="description" type="text" placeholder="Enter Description" formControlName="description">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="location" class="col-sm-4 col-form-label">Location:</label>
+            <div class="col-sm-8">
+                <input id="location" type="text" placeholder="Enter Location" formControlName="location">
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit" [disabled]="!educationEditForm.valid">Update</button>
+        <button class="btn btn-primary right" type="button" (click)="resetForm()">Reset</button>
+        <button type="button" class="btn btn-secondary right" (click)="switchEdit()">Cancel</button>
+        <button type="button" class="btn btn-danger right" (click)="deleteExp()">Delete</button>
+    </form>
+</div>

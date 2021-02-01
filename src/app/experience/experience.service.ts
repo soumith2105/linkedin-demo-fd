@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {FormGroup} from "@angular/forms";
 import {Observable, throwError} from "rxjs";
-import {LoginResponse} from "../auth";
 import {catchError, retry} from "rxjs/operators";
 import {Experience} from "../experience";
 
@@ -22,7 +21,6 @@ export class ExperienceService {
     };
 
     getExperiences(username: string): Observable<any> {
-        // now returns an Observable of Config
         return this.http.get<Array<Experience>>(this.urls.getAll, {
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
@@ -30,6 +28,38 @@ export class ExperienceService {
             }),
             params: new HttpParams().set("user", username),
         })
+            .pipe(
+                retry(1),
+                catchError(error => this.errorHandling(error))
+            );
+    }
+
+    getExperience(id: number): Observable<any> {
+        return this.http.get<Experience>(this.urls.getAll + `/${id}`, this.httpOptions)
+            .pipe(
+                retry(1),
+                catchError(error => this.errorHandling(error))
+            );
+    }
+
+    createExperience(experienceForm: FormGroup): Observable<any> {
+        return this.http.post<any>(this.urls.getAll, JSON.stringify(experienceForm.value), this.httpOptions)
+            .pipe(
+                retry(1),
+                catchError(error => this.errorHandling(error))
+            );
+    }
+
+    putExperience(id: number, experienceForm: FormGroup): Observable<any> {
+        return this.http.put<any>(this.urls.getAll + `/${id}`, JSON.stringify(experienceForm.value), this.httpOptions)
+            .pipe(
+                retry(1),
+                catchError(error => this.errorHandling(error))
+            );
+    }
+
+    deleteExperience(id: number): Observable<any> {
+        return this.http.delete<any>(this.urls.getAll + `/${id}`, this.httpOptions)
             .pipe(
                 retry(1),
                 catchError(error => this.errorHandling(error))

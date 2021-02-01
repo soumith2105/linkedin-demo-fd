@@ -2,30 +2,32 @@
     <h2>
         Programming Skills
         <span class="right">
-            <button>
-                <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                    ></path>
-                </svg>
-            </button>
+            <button (click)="switchCreate()">Add</button>
         </span>
     </h2>
     <h4 *ngIf="skills.length == 0">No Skills added!</h4>
     <div class="inner" *ngFor="let skill of skills; let last = last">
-        <h3>
-            <span>{{ skill.language }}</span>
-            <span class="right"> {{ skill.level }} of 5 </span>
-        </h3>
+        <app-skill-inner [skill]="skill" (myEvent)="reload()"></app-skill-inner>
         <hr *ngIf="!last" />
+    </div>
+    <div class="inner">
+        <div *ngIf="create">
+            <form class="personal-info .col-sm-" [formGroup]="skillEditForm" (ngSubmit)="submitForm()">
+                <div class="mb-3 row element">
+                    <label for="language" class="col-sm-4 col-form-label">Language:</label>
+                    <div class="col-sm-8">
+                        <input id="language" type="text" placeholder="Enter Language" formControlName="language">
+                    </div>
+                </div>
+                <div class="mb-3 row element">
+                    <label for="level" class="col-sm-4 col-form-label">Level:</label>
+                    <div class="col-sm-8">
+                        <input id="level" type="text" placeholder="Enter your Level" formControlName="level">
+                    </div>
+                </div>
+                <button class="btn btn-success" type="submit" [disabled]="!skillEditForm.valid">Create</button>
+                <button type="button" class="btn btn-secondary right" (click)="switchCreate()">Cancel</button>
+            </form>
+        </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 export interface Experience {
-    id: string;
+    id: number;
     role: string;
     company: Company;
     duration: string;
@@ -7,6 +7,7 @@ export interface Experience {
     endMonth: string;
     description: string;
     location: string;
+    user: string;
 }
 
 export interface Company {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Experience} from "../experience";
 import {ExperienceService} from "./experience.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: "app-experience",
@@ -8,34 +9,25 @@ import {ExperienceService} from "./experience.service";
     styleUrls: ["./experience.component.scss"],
 })
 export class ExperienceComponent implements OnInit {
-    // experiences: Array<Experience> = [
-    //     {
-    //         id: "1",
-    //         role: "Software Developer",
-    //         company: "Google",
-    //         duration: "2 years",
-    //         startMonth: "Jan 2019",
-    //         endMonth: "Jan 2021",
-    //         description: "Excellent Job",
-    //         location: "Hyderabad",
-    //     },
-    //     {
-    //         id: "1",
-    //         role: "Software Developer",
-    //         company: "Google",
-    //         duration: "2 years",
-    //         startMonth: "Jan 2019",
-    //         endMonth: "Jan 2021",
-    //         description: "Excellent Job",
-    //         location: "Hyderabad",
-    //     },
-    // ];
 
     experiences: Array<Experience> = [];
+
+    create = false;
 
     constructor(private experienceService: ExperienceService) {
 
     }
+
+    experienceEditForm: FormGroup = new FormGroup({
+        company: new FormControl("", Validators.required),
+        role: new FormControl("", Validators.required),
+        startMonth: new FormControl(""),
+        endMonth: new FormControl(""),
+        duration: new FormControl(""),
+        description: new FormControl(""),
+        location: new FormControl(""),
+        user: new FormControl(""),
+    });
 
 
     ngOnInit(): void {
@@ -45,10 +37,29 @@ export class ExperienceComponent implements OnInit {
             this.experienceService.getExperiences(user).subscribe(
                 (data: Array<Experience>) => {
                     this.experiences = data;
-                    console.log(this.experiences);
                 },
                 (error) => (console.log(error)),
             );
+            this.experienceEditForm.patchValue({
+                user,
+            });
         }
+    }
+
+    reload(): void {
+        this.ngOnInit();
+    }
+
+    switchCreate(): void {
+        this.create = !this.create;
+    }
+
+    submitForm(): void {
+        this.experienceService.createExperience(this.experienceEditForm)
+            .subscribe((data) => {
+                console.log(data);
+                this.reload();
+                this.switchCreate();
+            });
     }
 }

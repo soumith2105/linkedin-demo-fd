@@ -1,0 +1,46 @@
+<div>
+    <h3>
+        <span>{{ skill.language.name }}</span>
+        <span class="right">
+            <button (click)="switchEdit()">
+                <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    ></path>
+                </svg>
+
+            </button>
+        </span>
+    </h3>
+    <h4>{{ skill.level }} of 5 </h4>
+</div>
+<div *ngIf="edit">
+    <form class="personal-info .col-sm-" [formGroup]="skillEditForm" (ngSubmit)="submitForm()">
+        <div class="mb-3 row element">
+            <label for="language" class="col-sm-4 col-form-label">Language:</label>
+            <div class="col-sm-8">
+                <input id="language" type="text" placeholder="Enter Language" formControlName="language">
+            </div>
+        </div>
+        <div class="mb-3 row element">
+            <label for="level" class="col-sm-4 col-form-label">Level:</label>
+            <div class="col-sm-8">
+                <input id="level" type="text" placeholder="Enter your Level" formControlName="level">
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit" [disabled]="!skillEditForm.valid">Update</button>
+        <button class="btn btn-primary right" type="button" (click)="resetForm()">Reset</button>
+        <button type="button" class="btn btn-secondary right" (click)="switchEdit()">Cancel</button>
+        <button type="button" class="btn btn-danger right" (click)="deleteExp()">Delete</button>
+    </form>
+</div>
+
