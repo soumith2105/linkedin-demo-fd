@@ -25,6 +25,10 @@ form {
         border: none;
       }
 
+      &:focus{
+        color: blue;
+      }
+
       &::placeholder {
         color: lightgray;
       }
